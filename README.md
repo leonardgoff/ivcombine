@@ -33,13 +33,13 @@ ivcombine Y D Z1 Z2, covs(`controls') vary(1) treated
 
 The basic syntax of the command is as follows:
 
-``` ivcombine outcomevar treatmentvar instrument1 instrument2 ..., [vary(numlist) treated untreated covs(varlist) vce(string)]'''
+``` ivcombine outcomevar treatmentvar instrument1 instrument2 ..., [vary(numlist) treated untreated covs(varlist) vce(string)]```
 
 where:
 
-- `outcomevar` is an outcome variable ($Y$, in the notation of the paper)
-- `treatmentvar` is a binary endogenous treatment variable ($D$, in the notation of the paper)
-- `instrument1` is a binary instrumental variable for ```treatmentvar``` (denoted $Z_1$ in the paper), ```instrument2``` is another binary instrumental variable for `treatmentvar`,  etc., where all of the instruments are assumed to be jointly valid and satisfy vector monotonicity
+- ```outcomevar``` is an outcome variable ($Y$, in the notation of the paper)
+- ```treatmentvar``` is a binary endogenous treatment variable ($D$, in the notation of the paper)
+- ```instrument1``` is a binary instrumental variable for ```treatmentvar``` (denoted $Z_1$ in the paper), ```instrument2``` is another binary instrumental variable for `treatmentvar`,  etc., where all of the instruments are assumed to be jointly valid and satisfy vector monotonicity
 
 Optional arguments to ``ivcombine'' include:
 
