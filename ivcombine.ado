@@ -139,13 +139,13 @@ qui set type float, permanently
 			}
 			
 			if(`paramtreated'==0){
-				di as result "Parameter of interest: SLATE on set `vary'"
+				di as result "Parameter of interest: SLATE on set {`vary'}"
 			}
 			if(`paramtreated'==1){
-				di as result "Parameter of interest: SLATT on set `vary'"
+				di as result "Parameter of interest: SLATT on set {`vary'}"
 			}
 			if(`paramtreated'==-1){
-				di as result "Parameter of interest: SLATU on set `vary'"
+				di as result "Parameter of interest: SLATU on set {`vary'}"
 			}
 		}
 
