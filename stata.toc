@@ -1,0 +1,4 @@
+v 3
+d Repository for Stata function ivcombine
+
+p ivcombine IV estimation with multiple instruments
