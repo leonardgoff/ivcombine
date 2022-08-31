@@ -8,7 +8,7 @@ This is a preliminary version of the code and is offered without warranty. I app
 
 The file [ivcombine.ado](ivcombine.ado) is the main code file. The package can be installed directly from within Stata by running
 ```
-net from https://raw.githubusercontent.com/leonardgoff/ivcombine/
+net from https://raw.githubusercontent.com/leonardgoff/ivcombine/master
 net describe ivcombine
 net install ivcombine
 ```
