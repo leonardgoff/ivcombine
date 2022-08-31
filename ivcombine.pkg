@@ -4,4 +4,3 @@ d This package implements the estimation procedure in Goff 2022
 d Paper available at https://arxiv.org/abs/2009.00553.
 
 f ivcombine.ado
-f sampledata.dta
