@@ -23,10 +23,10 @@ Here's some test code to get you going, once ```ivcombine``` is installed. This 
 use "sampledata.dta", clear
 
 *To estimate e.g. the all compliers late (ACL):
-ivcombine Y D Z1 Z2, covs(`controls') vary(1 2)
+ivcombine Y D Z1 Z2, vary(1 2)
 
 *To estimate e.g. the ``Set LATE'' for instrument 1, among the treated:
-ivcombine Y D Z1 Z2, covs(`controls') vary(1) treated
+ivcombine Y D Z1 Z2, vary(1) treated
 ```
 
 ## Syntax
