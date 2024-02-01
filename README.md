@@ -59,6 +59,6 @@ In addition to outputting the numerical results to the screen, The ```ivcombine`
 - ```param_se``` returns a standard error for the above estimate of the parameter of interest $\Delta_c$
 - ```fstage_ptest``` returns a point estimate of $P(c(G_i,Z_i)=1)$ for the parameter of interest (intuitively, this is the size of the group for whom average treatment effects are being estimated, and serves as the ``denominator'' in $\Delta_c$)
 - ```fstage_se``` returns a standard error for the above estimate of $P(c(G_i,Z_i)=1)$
-- ```ivcombine``` also stores ```param_ptest``` and the square of ```param_se```, respectively, as the Stata matrices ```e(b)``` and ```e(V)``` (each stored as $1 \times 1$ scalars), which can be useful when reporting results using e.g. the ```esttab``` command
+- ```ivcombine``` also stores ```param_ptest``` and the square of ```param_se``` as the Stata matrices ```e(b)``` and ```e(V)``` (each is a $1 \times 1$ matrix). This can be useful when reporting results using e.g. the ```esttab``` command
 
 ## Current version of ```ivcombine``` code: 1.1
