@@ -1,9 +1,11 @@
+*Todo: figure out why no SE with ivcombine Y D Z1 Z2, vary(1 2)
+
 /*
 ********************************************************************************
-VERSION 1.00 (AUGUST 29, 2022)
+VERSION 1.1 (JANUARY 30, 2024)
 DISCLAIMER: THIS CODE SHOULD BE CONSIDERED PRELIMINARY AND IS OFFERED WITHOUT WARRANTY.
 I APPRECIATE YOUR COMMENTS AND ANY ISSUES NOTICED, AT LEONARD.GOFF AT UCALGARY DOT CA.
-Copyright (C) 2022 Leonard Goff
+Copyright (C) 2022-2024 Leonard Goff
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -122,13 +124,13 @@ qui set type float, permanently
 		if "`vary'"=="" {
 			matrix scriptJ = J(`numZ', 1, 1)
 			if(`paramtreated'==0){
-				di as result "Parameter of interest: vary() is not set, estimating ACL"
+				di as result "Parameter of interest: vary() is not set, estimating ACLATE"
 			}
 			if(`paramtreated'==1){
-				di as result "Parameter of interest: vary() is not set, estimating ACL on the treated"
+				di as result "Parameter of interest: vary() is not set, estimating ACLATE on the treated"
 			}
 			if(`paramtreated'==-1){
-				di as result "Parameter of interest: vary() is not set, estimating ACL on the untreated"
+				di as result "Parameter of interest: vary() is not set, estimating ACLATE on the untreated"
 			}
 		}
 		else{
@@ -148,8 +150,7 @@ qui set type float, permanently
 				di as result "Parameter of interest: SLATU on set {`vary'}"
 			}
 		}
-
-	estimates clear
+	
 	qui reg outcomevar Zprod* `controls', nocons
 	estimates store yvar
 	qui reg treatmentvar Zprod* `controls', nocons
@@ -259,20 +260,19 @@ qui set type float, permanently
 	local nlcomstring = "(`numerator')/(`denominator')"
 	
 	qui suest yvar dvar avg_*, vce(`clusterstring')
-		qui nlcom "`nlcomstring'", post
-		matrix temp = e(V)
-		scalar param_se = sqrt(temp[1,1])
-		matrix temp = e(b)
-		scalar param_ptest = temp[1,1]
-		
+		qui nlcom `nlcomstring', post
+		matrix eV = e(V)
+		scalar param_se = sqrt(eV[1,1])
+		matrix eb = e(b)
+		scalar param_ptest = eb[1,1]
 	
 	qui suest yvar dvar avg_*, vce(`clusterstring')
-		qui nlcom "`denominator'", post
+		qui nlcom `denominator', post
 		matrix temp = e(V)
 		scalar fstage_se = sqrt(temp[1,1])
 		matrix temp = e(b)
 		scalar fstage_ptest = temp[1,1]
-		
+	
 	local param_se: di %4.2f scalar(param_se)
 	local param_ptest: di %4.2f scalar(param_ptest)
 	local fstage_se: di %4.2f scalar(fstage_se)
@@ -283,11 +283,12 @@ qui set type float, permanently
 	
 	drop outcomevar treatmentvar instrument* Zprod* ones
 	
-	estimates clear
 	ereturn scalar param_ptest = scalar(param_ptest)
 	ereturn scalar param_se = scalar(param_se)
 	ereturn scalar fstage_ptest = scalar(fstage_ptest)
 	ereturn scalar fstage_se = scalar(fstage_se)
+	
+	ereturn repost b=eb V=eV
 	
 	timer off 51
 	qui timer list 51
